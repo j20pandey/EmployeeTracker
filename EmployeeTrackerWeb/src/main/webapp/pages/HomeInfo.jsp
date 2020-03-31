@@ -8,6 +8,7 @@
 <h1>Welcome</h1><div></div>
 </head>
 <body>
+<a href="Emplist">Employee Table</a><br></br>
 <a href="DataAdd">Add Data</a><br></br>
 <a href="Search">Search Data</a>
 </body>

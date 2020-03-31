@@ -1,5 +1,6 @@
 package com.one.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.one.model.Employee;
 import com.one.repository.EmployeeRepository;
 
-//@Controller
-@RestController
+@Controller
+//@RestController
 public class EmployeeController {
 
 	@Autowired
@@ -29,7 +31,8 @@ public class EmployeeController {
 	// Mapping
 	@RequestMapping("/")
 	public String Home() {
-		return "HomeInfo";
+		 return "HomeInfo";
+		//return "DataTable";
 	}
 
 	@RequestMapping("/DataAdd")
@@ -98,7 +101,7 @@ public class EmployeeController {
 		mv.setViewName("DataView");
 		return mv;
 	}
-	
+
 	@RequestMapping("/ViewDepart")
 	public ModelAndView viewDepart(@RequestParam String empDep) {
 		List<Employee> empList = empRepo.findByempDep(empDep);
@@ -111,33 +114,41 @@ public class EmployeeController {
 		mv.setViewName("DataView");
 		return mv;
 	}
-	
-	//Response Body Inp
-	
+
+	// Response Body Emp
+
 	@RequestMapping("/Emp")
 	@ResponseBody
 	public String viewAll() {
-		
+
 		System.out.println("All Emp+++++++");
-		
+
 		return empRepo.findAll().toString();
 	}
 	
-	//Path Variable
+	//All Data
+	@RequestMapping("/Emplist")
+	public ModelAndView viewAll1() {
+		List<Employee> empList = empRepo.findAll();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("EmpData", empList);
+		System.out.println(empList.toString());
+		mv.setViewName("DataTable");
+		return mv;
+	}
+	// Path Variable
 	
+
 	@RequestMapping("/Get/{id}")
 	@ResponseBody
 	public String getEmp(@PathVariable("id") int id) {
-		
+
 		System.out.println("Get Emp+++++++");
-		
+
 		return empRepo.findById(id).toString();
 	}
-	
-	
-	
-	
-	//JSON
+
+	// JSON
 //	@RequestMapping("/AllEmp")
 //	@ResponseBody
 //	public Optional<Employee> viewAllEmp() {
@@ -146,43 +157,42 @@ public class EmployeeController {
 //		
 //		return empRepo.findAll();
 //	}
-	
-	@RequestMapping(path = "/EMP/{id}", produces = {"application/json"})
-	//@RequestMapping("/EMP/{id}")
+
+	@RequestMapping(path = "/EMP/{id}", produces = { "application/json" })
+	// @RequestMapping("/EMP/{id}")
 	@ResponseBody
 	public Optional<Employee> getEmpByID(@PathVariable("id") int id) {
-		
+
 		System.out.println("Get Emp+++++++");
-		
+
 		return empRepo.findById(id);
 	}
-	
+
 	@PostMapping("/Addemp")
 	@ResponseBody
 	public Employee addEmployee(@RequestBody Employee log) {
 		empRepo.save(log);
-		
+
 		return log;
-		
+
 	}
-	
+
 	@DeleteMapping("/Del/{id}")
 	@ResponseBody
 	public String DelEmployee(@PathVariable("id") int id) {
 		empRepo.deleteById(id);
-		
+
 		return "Delete";
-		
+
 	}
-	
-	
+
 	@PutMapping("/Addemp")
 	@ResponseBody
 	public Employee putEmployee(@RequestBody Employee log) {
 		empRepo.save(log);
-		
+
 		return log;
-		
+
 	}
 
 }
