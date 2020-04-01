@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Data Add</title>
+<title>Insert title here</title>
 <h1>Add Data</h1><div></div>
 </head>
-<form action="AddUser">
-Employee Id: <input type="text" name="id"><br>
-Employee Name: <input type="text" name="empName"><br>
-Employee Depart: <input type="text" name="empDep"><br>
+<form action="Add">
+Id: <input type="text" name="userId"><br>
+User Name: <input type="text" name="userName"><br>
+User Password: <input type="text" name="userPass"><br>
 <input type="submit" value="Submit">
 </form>
 <body>

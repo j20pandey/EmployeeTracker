@@ -136,6 +136,20 @@ public class EmployeeController {
 		mv.setViewName("DataTable");
 		return mv;
 	}
+	
+	
+	@RequestMapping("/remove/{id}")
+	public ModelAndView  DelEmployeeById(@PathVariable("id") int id) {
+		empRepo.deleteById(id);
+		List<Employee> empList = empRepo.findAll();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("EmpData", empList);
+		System.out.println(empList.toString());
+		mv.setViewName("DataTable");
+		return mv;
+
+	}
+	
 	// Path Variable
 	
 
