@@ -5,12 +5,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<h1>Add Data</h1><div></div>
+
 </head>
-<form action="Add">
+<h1>Login</h1><div></div>
+<form action="login" method="POST">
 Id: <input type="text" name="userId"><br>
 User Name: <input type="text" name="userName"><br>
-User Password: <input type="text" name="userPass"><br>
+User Password: <input type="password" name="userPass"><br>
 <input type="submit" value="Submit">
 </form>
 <body>

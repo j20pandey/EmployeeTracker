@@ -10,6 +10,7 @@
 <body>
 <a href="Emplist">Employee Table</a><br></br>
 <a href="DataAdd">Add Data</a><br></br>
-<a href="Search">Search Data</a>
+<a href="Search">Search Data</a><br></br>
+<a href="logout">Logout</a><br></br>
 </body>
 </html>
