@@ -15,11 +15,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
-//	@Autowired
-//	UserDetailsService userDetailsService;
+	@Autowired
+	UserDetailsService userDetailsService;
 	
 	//Own username and password 
 //	@Bean
@@ -35,40 +35,40 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 	//username and passsword from DB
-//	@Bean
-//	public AuthenticationProvider authProvider() {
-//		DaoAuthenticationProvider daoAuth = new DaoAuthenticationProvider();
-//		daoAuth.setUserDetailsService(userDetailsService);
-//		//daoAuth.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
-//		daoAuth.setPasswordEncoder(new BCryptPasswordEncoder());
-//
-//		return daoAuth;
-//	}
+	@Bean
+	public AuthenticationProvider authProvider() {
+		DaoAuthenticationProvider daoAuth = new DaoAuthenticationProvider();
+		daoAuth.setUserDetailsService(userDetailsService);
+		//daoAuth.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		daoAuth.setPasswordEncoder(new BCryptPasswordEncoder());
+
+		return daoAuth;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		//-------DB---------------
-//		http.csrf().disable()
-//		.authorizeRequests().antMatchers("/login")
-//		.permitAll()
-//		.anyRequest().authenticated()
-//		.and()
-//		.formLogin()
-//		.loginPage("/login").permitAll()
-//		.and()
-//		.logout().invalidateHttpSession(true)
-//		.clearAuthentication(true)
-//		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//		.logoutSuccessUrl("/logoutSuc")
-//		.permitAll();
-		
-		
-		//OAuth2
 		http.csrf().disable()
 		.authorizeRequests().antMatchers("/login")
 		.permitAll()
-		.anyRequest().authenticated();
+		.anyRequest().authenticated()
+		.and()
+		.formLogin()
+		.loginPage("/login").permitAll()
+		.and()
+		.logout().invalidateHttpSession(true)
+		.clearAuthentication(true)
+		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		.logoutSuccessUrl("/logoutSuc")
+		.permitAll();
+		
+		
+		//OAuth2
+//		http.csrf().disable()
+//		.authorizeRequests().antMatchers("/login")
+//		.permitAll()
+//		.anyRequest().authenticated();
 	
 	}
 }

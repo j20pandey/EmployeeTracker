@@ -21,9 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.one.model.Employee;
 import com.one.repository.EmployeeRepository;
 
+import ch.qos.logback.classic.Logger;
+
 @Controller
 //@RestController
 public class EmployeeController {
+	
+	//private static Logger log;
 
 	@Autowired
 	EmployeeRepository empRepo;

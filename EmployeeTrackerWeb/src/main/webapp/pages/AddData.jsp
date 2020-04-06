@@ -7,7 +7,7 @@
 <title>Data Add</title>
 <h1>Add Data</h1><div></div>
 </head>
-<form action="AddUser">
+<form action="Add">
 Employee Id: <input type="text" name="id"><br>
 Employee Name: <input type="text" name="empName"><br>
 Employee Depart: <input type="text" name="empDep"><br>
